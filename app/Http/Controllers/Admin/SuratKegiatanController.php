@@ -103,7 +103,7 @@ class SuratKegiatanController extends Controller
      */
     public function edit(SuratUndangan $suratUndangan,$id)
     {
-        $data = SuratUndangan::where('id',$id)->get();
+        $data = SuratUndangan::findOrFail($id)->get();
         return view('admin.suratundangan.edit',compact('data'));
     }
 
@@ -145,7 +145,7 @@ class SuratKegiatanController extends Controller
                 'nama_pembuat' => $request->nama_pembuat,
             ]);
         }else{
-            SuratUndangan::where('id',$id)->update([
+            SuratUndangan::findOrFail($id)->update([
                 'nosurat' => $request->nosurat,
                 'lampiran' => $request->lampiran,
                 'perihal' => $request->perihal,
