@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Buat Surat Kegiatan')
 @section('content')
 <div class="container">
     <form action="{{route('store')}}" method="POST" role="form">

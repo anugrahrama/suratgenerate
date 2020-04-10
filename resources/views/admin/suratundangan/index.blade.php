@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Surat Kegiatan')
 @section('content')
 
 <a href="{{ route('create') }}" class="btn btn-primary">Tambah Surat</a>

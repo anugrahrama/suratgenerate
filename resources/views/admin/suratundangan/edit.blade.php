@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Edit Nye Rusak')
 @section('content')
 <div class="container">
     @foreach($data as $val)

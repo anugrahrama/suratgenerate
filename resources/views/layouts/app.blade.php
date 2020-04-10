@@ -173,7 +173,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="kt-menu__item active" aria-haspopup="true"><a href="demo1/index.html" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-lock"></i><span class="kt-menu__link-text">Login</span></a></li>
 								@endguest
 								@auth
-								<li class="kt-menu__item active" aria-haspopup="true"><a href="" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-home"></i><span class="kt-menu__link-text">Dashboard</span></a></li>
+								<li class="kt-menu__item active" aria-haspopup="true"><a href="{{ route('home') }}" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-home"></i><span class="kt-menu__link-text">Dashboard</span></a></li>
 								<li class="kt-menu__item active" aria-haspopup="true"><a href="{{ route('index') }}" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-mail"></i><span class="kt-menu__link-text">Surat</span></a></li>
 								@endauth
 							</ul>
