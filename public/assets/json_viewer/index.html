@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="json-viewer.css">
+<script src="jquery.js"></script>
+<script src="json-viewer.js"></script>
+
+<div id="json-container"></div>
+
+<script>
+    var json = {
+        foo: "bar",
+        number: 123,
+    }
+
+    $('#json-container').jsonview(json);
+</script>
