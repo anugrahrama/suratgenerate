@@ -27,7 +27,7 @@ class SuratKegiatanController extends Controller
     public function create()
     {
       return view('admin.suratundangan.create');
-    }
+  }
 
     /**
      * Store a newly created resource in storage.
@@ -50,37 +50,28 @@ class SuratKegiatanController extends Controller
             'jabatan_pembuat' => 'required',
             'nama_pembuat' => 'required',
         ]);
-        if($request->lampiran == null){
-            SuratUndangan::create([
-                'nosurat' => $request->nosurat,
-                'lampiran' => '-',
-                'perihal' => $request->perihal,
-                'tanggal_pembuatan' => $request->tanggal_pembuatan,
-                'nama_penerima' => $request->nama_penerima,
-                'event' => $request->event,
-                'kegiatan' => $request->kegiatan,
-                'hari_tanggal_pelaksanaan' => $request->hari_tanggal_pelaksanaan,
-                'jam_pelaksanaan' => $request->jam_pelaksanaan,
-                'tempat_pelaksanaan' => $request->tempat_pelaksanaan,
-                'jabatan_pembuat' => $request->jabatan_pembuat,
-                'nama_pembuat' => $request->nama_pembuat,
-            ]);
-        }else{
-            SuratUndangan::create([
-                'nosurat' => $request->nosurat,
-                'lampiran' => $request->lampiran,
-                'perihal' => $request->perihal,
-                'tanggal_pembuatan' => $request->tanggal_pembuatan,
-                'nama_penerima' => $request->nama_penerima,
-                'event' => $request->event,
-                'kegiatan' => $request->kegiatan,
-                'hari_tanggal_pelaksanaan' => $request->hari_tanggal_pelaksanaan,
-                'jam_pelaksanaan' => $request->jam_pelaksanaan,
-                'tempat_pelaksanaan' => $request->tempat_pelaksanaan,
-                'jabatan_pembuat' => $request->jabatan_pembuat,
-                'nama_pembuat' => $request->nama_pembuat,
-            ]);
+
+        $data = [
+            'nosurat' => $request->nosurat,
+            'lampiran' => '-',
+            'perihal' => $request->perihal,
+            'tanggal_pembuatan' => $request->tanggal_pembuatan,
+            'nama_penerima' => $request->nama_penerima,
+            'event' => $request->event,
+            'kegiatan' => $request->kegiatan,
+            'hari_tanggal_pelaksanaan' => $request->hari_tanggal_pelaksanaan,
+            'jam_pelaksanaan' => $request->jam_pelaksanaan,
+            'tempat_pelaksanaan' => $request->tempat_pelaksanaan,
+            'jabatan_pembuat' => $request->jabatan_pembuat,
+            'nama_pembuat' => $request->nama_pembuat,
+        ];
+
+        if($request->lampiran != null){
+            $data["lampiran"] = $request->lampiran;   
         }
+
+        SuratUndangan::create($data);
+
         return redirect()->route('index');
     }
 
@@ -104,6 +95,7 @@ class SuratKegiatanController extends Controller
     public function edit(SuratUndangan $suratUndangan,$id)
     {
         $data = SuratUndangan::findOrFail($id)->get();
+
         return view('admin.suratundangan.edit',compact('data'));
     }
 
@@ -129,37 +121,28 @@ class SuratKegiatanController extends Controller
             'jabatan_pembuat' => 'required',
             'nama_pembuat' => 'required',
         ]);
-        if($request->lampiran == null){
-            SuratUndangan::where('id',$id)->update([
-                'nosurat' => $request->nosurat,
-                'lampiran' => '-',
-                'perihal' => $request->perihal,
-                'tanggal_pembuatan' => $request->tanggal_pembuatan,
-                'nama_penerima' => $request->nama_penerima,
-                'event' => $request->event,
-                'kegiatan' => $request->kegiatan,
-                'hari_tanggal_pelaksanaan' => $request->hari_tanggal_pelaksanaan,
-                'jam_pelaksanaan' => $request->jam_pelaksanaan,
-                'tempat_pelaksanaan' => $request->tempat_pelaksanaan,
-                'jabatan_pembuat' => $request->jabatan_pembuat,
-                'nama_pembuat' => $request->nama_pembuat,
-            ]);
-        }else{
-            SuratUndangan::findOrFail($id)->update([
-                'nosurat' => $request->nosurat,
-                'lampiran' => $request->lampiran,
-                'perihal' => $request->perihal,
-                'tanggal_pembuatan' => $request->tanggal_pembuatan,
-                'nama_penerima' => $request->nama_penerima,
-                'event' => $request->event,
-                'kegiatan' => $request->kegiatan,
-                'hari_tanggal_pelaksanaan' => $request->hari_tanggal_pelaksanaan,
-                'jam_pelaksanaan' => $request->jam_pelaksanaan,
-                'tempat_pelaksanaan' => $request->tempat_pelaksanaan,
-                'jabatan_pembuat' => $request->jabatan_pembuat,
-                'nama_pembuat' => $request->nama_pembuat,
-            ]);
+
+        $data = [
+            'nosurat' => $request->nosurat,
+            'lampiran' => '-',
+            'perihal' => $request->perihal,
+            'tanggal_pembuatan' => $request->tanggal_pembuatan,
+            'nama_penerima' => $request->nama_penerima,
+            'event' => $request->event,
+            'kegiatan' => $request->kegiatan,
+            'hari_tanggal_pelaksanaan' => $request->hari_tanggal_pelaksanaan,
+            'jam_pelaksanaan' => $request->jam_pelaksanaan,
+            'tempat_pelaksanaan' => $request->tempat_pelaksanaan,
+            'jabatan_pembuat' => $request->jabatan_pembuat,
+            'nama_pembuat' => $request->nama_pembuat,
+        ];
+
+        if($request->lampiran != null){
+            $data["lampiran"] = $request->lampiran;
         }
+
+        SuratUndangan::findOrFail($id)->update($data);
+
         return redirect()->route('index');
     }
 
@@ -172,7 +155,9 @@ class SuratKegiatanController extends Controller
     public function destroy(SuratUndangan $suratUndangan,$id)
     {
         $data = SuratUndangan::find($id);
+
         $data->delete();
+        
         return redirect()->back();
     }
 }
